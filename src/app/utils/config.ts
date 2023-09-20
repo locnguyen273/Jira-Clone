@@ -1,0 +1,1 @@
+export const domainlURL = "https://freeapi.miniprojectideas.com/api/Jira/";
