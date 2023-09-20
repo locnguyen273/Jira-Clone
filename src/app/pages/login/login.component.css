@@ -1,15 +1,27 @@
 .main {
   background-image: url(/assets/bg-img.jpg);
   height: 100vh;
+  position: relative;
+}
+
+.login-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 /* first col */
 .authfy-panel-left {
   background-color: rgba(38, 43, 72, 0.92);
-  color: #ffffff;
+  color: #fff;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
   box-shadow: 0px 3px 6px #1d2030;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
 }
 
 .btn-facebook {
@@ -30,17 +42,17 @@
   padding-right: 69px;
 }
 
-.btn-lg {
-  margin-right: 90px;
-}
-
 .authfy-login {
-  padding-left: 60px;
+  padding: 0 50px;
 }
 
 .authfy-heading {
-  margin-right: 64px;
   padding-top: 25px;
+}
+.auth-title {
+  text-transform: capitalize;
+  text-align: center;
+  margin: 0 0 20px 0;
 }
 
 .main-row {

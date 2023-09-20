@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg bg-white fixed-top mynav pb-0 pt-0">
-  <div class="container-fluid">
+<nav class="navbar navbar-expand-lg bg-white fixed-top mynav px-5">
+  <div class="container-fluid mx-5">
     <a class="navbar-brand align-self-baseline" href="#"
       ><i class="fa-solid fa-bars me-3"></i>Jira Software</a
     >
@@ -46,12 +46,12 @@
             Projects
           </a>
           <ul class="dropdown-menu">
-            <!-- <li
+            <li
               *ngFor="let project of projectList"
               (click)="setProject(project)"
             >
               <a class="dropdown-item">{{ project.projectName }}</a>
-            </li> -->
+            </li>
           </ul>
         </li>
         <li class="nav-item dropdown">
@@ -166,7 +166,7 @@
               <li>
                 <hr class="dropdown-divider" />
               </li>
-              <li><a class="dropdown-item" href="#">Log-Off</a></li>
+              <li><a class="dropdown-item" href="#">Log out</a></li>
             </ul>
           </li>
         </ul>

@@ -13,7 +13,7 @@ export class BoardComponent {
   selectedProjectData: any ;
   status: string[]= ['To Do','In Progress','Done'];
 
-  constructor(private http: HttpClient, private master: MasterService) {
+  constructor(private master: MasterService, private http: HttpClient) {
     this.master.onProjectChange.subscribe((res: any) => {
       this.getProjectTickets(res.projectId);
       this.selectedProjectData = res;
