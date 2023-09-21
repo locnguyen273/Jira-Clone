@@ -1,0 +1,17 @@
+<div class="main">
+  <div class="container-fluid">
+    <div class="login-form">
+      <div class="authfy-heading">
+        <img
+          src="./assets/logo.png"
+          style="width: 200px"
+          alt="brand-logo"
+        />
+        <h3 class="auth-title" *ngIf="locationPath; else elseBlock">Login to your account</h3>
+        <ng-template #elseBlock>
+          <h3 class="auth-title">Register your account</h3></ng-template>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

@@ -12,6 +12,7 @@ export class BoardComponent {
   ticketsArray: any[] = [];
   selectedProjectData: any ;
   status: string[]= ['To Do','In Progress','Done'];
+  currentItem: any;
 
   constructor(private master: MasterService, private http: HttpClient) {
     this.master.onProjectChange.subscribe((res: any) => {
@@ -33,5 +34,20 @@ export class BoardComponent {
 
   filterTicket(status: string) {
     return this.ticketsArray.filter(m => m.status == status);
+  }
+
+  onDragStart(item: any) {
+    this.currentItem = item;
+  }
+  onDrop(event: any, status: string) {
+    event.preventDefault();
+    const record = this.ticketsArray.find(m => m.ticketId == this.currentItem.ticketId);
+    if(record != undefined) {
+      record.status = status;
+    }
+    this.currentItem = null;
+  }
+  onDragOver(event: any) {
+    event.preventDefault();
   }
 }

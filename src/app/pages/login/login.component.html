@@ -1,86 +1,71 @@
-<div class="main">
-  <div class="container-fluid">
-    <div class="row login-form">
-      <div class="col-sm-5 authfy-panel-left">
-        <div class="brand-logo">
-          <img src="./assets/glichlogo.svg" style="width: 100%" alt="brand-logo" />
-        </div>
-      </div>
-      <div
-        class="col-sm-7 authfy-panel-right"
-        style="background-color: white; width: 535px"
+<form class="loginForm" [formGroup]="reactiveForm" (ngSubmit)="onLogin()">
+  <div class="form-group">
+    <input
+      type="email"
+      formControlName="emailId"
+      class="form-control email mb-3"
+      required
+      placeholder="Please input your email"
+    />
+    <!-- Error messages for invalid email -->
+    <div
+      *ngIf="
+        reactiveForm.controls['emailId'].errors.required &&
+        reactiveForm.controls['emailId'].touched
+      "
+      class="text-danger text-align-left"
+    >
+      <p
+        class="text-start"
+        *ngIf="reactiveForm.controls['emailId'].errors.required"
       >
-        <div class="authfy-login">
-          <div class="authfy-panel panel-login text-center active">
-            <div class="authfy-heading">
-              <h3 class="auth-title">Login to your account</h3>
-            </div>
-            <div class="row">
-              <div class="col-xs-12 col-sm-12">
-                <form
-                  name="loginForm"
-                  class="loginForm"
-                  action="#"
-                  method="POST"
-                >
-                  <div class="form-group">
-                    <input
-                      type="email"
-                      [(ngModel)]="loginObj.emailId"
-                      class="form-control email mb-3"
-                      name="emailId"
-                      required
-                      placeholder="Please input your email"
-                    />
-                  </div>
-                  <div class="form-group">
-                    <div class="pwdMask">
-                      <span class="d-flex">
-                        <input
-                          type="password"
-                          [(ngModel)]="loginObj.password"
-                          class="form-control password"
-                          name="password"
-                          placeholder="Please input your password"
-                        />
-                      </span>
-                    </div>
-                  </div>
-                  <div class="row remember-row d-flex pt-4">
-                    <div class="col-6 remember-box">
-                      <label class="checkbox text-left">
-                        <input type="checkbox" value="remember-me" />
-                        <span class="label-text">Remember me</span>
-                      </label>
-                    </div>
-                    <div class="col-6">
-                      <p class="forgotPwd">
-                        <a class="lnk-toggler" data-panel=".panel-forgot"
-                          >Forgot password?</a
-                        >
-                      </p>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <button
-                      class="btn btn-lg btn-primary btn-block"
-                      (click)="onLogin()"
-                      type="button"
-                      style="width: 80%"
-                    >
-                      Login
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <p>
-              Don't have an account ?
-              <a class="lnk-toggler" data-panel=".panel-signup">Sign up</a>
-            </p>
-          </div>
-        </div>
-      </div>
+        Email is required.
+      </p>
+    </div>
+    <div
+      class="text-danger"
+      *ngIf="reactiveForm.controls['emailId'].errors.email"
+    >
+      <p class="text-start">Invalid email format</p>
     </div>
   </div>
-</div>
+  <div class="form-group">
+    <input
+      type="password"
+      formControlName="password"
+      class="form-control password mb-3"
+      placeholder="Please input your password"
+    />
+    <!-- Error messages for invalid password -->
+    <div
+      *ngIf="
+        reactiveForm.controls['password'].errors.required &&
+        reactiveForm.controls['password'].touched
+      "
+      class="text-danger"
+    >
+      <p
+        class="text-start"
+        *ngIf="reactiveForm.controls['emailId'].errors.required"
+      >
+        Password is required.
+      </p>
+    </div>
+  </div>
+  <div class="form-group">
+    <button
+      class="btn btn-lg btn-primary btn-block"
+      (click)="onLogin()"
+      type="button"
+      style="width: 100%"
+    >
+      Login
+    </button>
+  </div>
+</form>
+<p class="mt-3">
+  Don't have an account ?
+  <a class="lnk-toggler" data-panel=".panel-signup" [routerLink]="['/register']"
+    >Sign up</a
+  >
+</p>

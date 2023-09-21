@@ -1,0 +1,7 @@
+.register-input {
+  width: 100%;
+  height: 70px !important;
+}
+.mat-mdc-form-field:not(.mat-form-field-no-animations) .mdc-text-field__input {
+  line-height: 50px;
+}

@@ -23,17 +23,14 @@
   </div>
   <div class="row pt-1">
     <div class="col" id="3" *ngFor="let staus of status">
-      <div class="card card-bg">
-        <div class="card-header border-0 py-1">
-          {{ staus }} <span> </span
-          ><!---->
-        </div>
+      <div class="card card-bg" (dragover)="onDragOver($event)" (drop)="onDrop($event,staus)">
+        <div class="card-header border-0 py-1">{{ staus }}</div>
         <div class="card-body ticket-bg border" id="3">
-          <!---->
           <div
             draggable="true"
             *ngFor="let ticket of filterTicket(staus)"
             class="card-Body-Hover m-1 rounded-1 task"
+            (dragstart)="onDragStart(ticket)"
           >
             <div class="my-1 fw-bold">{{ ticket.summary }}</div>
             <div class="row">

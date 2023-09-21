@@ -14,20 +14,18 @@
   background: #fff;
   padding: 32px;
   border-radius: 16px;
-  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
 
+.authfy-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .auth-title {
   text-transform: capitalize;
   text-align: center;
   margin: 10px 0 20px;
-}
-.form-group {
-  box-sizing: border-box;
-  box-shadow: skyblue;
-}
-
-input.ng-invalid.ng-touched {
-  border: 1px solid red;
 }

@@ -10,6 +10,15 @@ import { LayoutComponent } from './pages/layout/layout.component';
 import { UsersComponent } from './pages/users/users.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from './pages/register/register.component';
+import { AuthTemplateComponent } from './templates/auth-template/auth-template.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -18,15 +27,25 @@ import { HttpClientModule } from '@angular/common/http';
     BoardComponent,
     LoginComponent,
     LayoutComponent,
-    UsersComponent
+    UsersComponent,
+    RegisterComponent,
+    AuthTemplateComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatButtonModule,
   ],
-  providers: [],
+  providers: [
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
