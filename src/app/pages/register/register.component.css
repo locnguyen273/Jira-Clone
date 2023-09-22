@@ -1,7 +1,19 @@
-.register-input {
+.register-input, .register-submit {
   width: 100%;
-  height: 70px !important;
 }
-.mat-mdc-form-field:not(.mat-form-field-no-animations) .mdc-text-field__input {
-  line-height: 50px;
+.register-submit {
+  height: 50px;
+  font-size: 18px;
 }
+
+.register-router {
+  margin: 10px 0 0;
+  text-align: center;
+  font-size: 16px;
+}
+
+.register-router a {
+  font-weight: 600;
+}
+/* .mat-mdc-form-field:not(.mat-form-field-no-animations) .mdc-text-field__input {
+} */

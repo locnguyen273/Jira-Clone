@@ -1,26 +1,88 @@
-<form class="example-form">
+<form class="example-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
   <mat-form-field appearance="outline" class="register-input">
     <mat-label>Email</mat-label>
-    <input matInput placeholder="Please input your email">
+    <input
+      matInput
+      placeholder="Please input your email"
+      formControlName="emailId"
+      required
+    />
+    <mat-error *ngIf="registerForm.controls['emailId'].errors?.['required']">
+      Email is required
+    </mat-error>
+    <mat-error *ngIf="registerForm.controls['emailId'].errors?.['email']">
+      Please enter a valid email address
+    </mat-error>
   </mat-form-field>
+
   <mat-form-field appearance="outline" class="register-input">
     <mat-label>Full Name</mat-label>
-    <input matInput placeholder="Please input your full name">
+    <input
+      matInput
+      placeholder="Please input your full name"
+      formControlName="fullName"
+      required
+    />
+    <mat-error *ngIf="registerForm.controls['fullName'].errors?.['required']">
+      Full name is required
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="outline" class="register-input">
     <mat-label>Password</mat-label>
-    <input matInput placeholder="Please input your password" matInput [type]="hide ? 'password' : 'text'">
-    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    <input
+      matInput
+      placeholder="Please input your password"
+      [type]="hide ? 'password' : 'text'"
+      formControlName="password"
+    />
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="hide = !hide"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide"
+    >
+      <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
     </button>
+    <mat-error *ngIf="registerForm.controls['password'].errors?.['required']">
+      Password is required
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field appearance="outline" class="register-input">
     <mat-label>Confirm Password</mat-label>
-    <input matInput placeholder="Please confirm your password" matInput [type]="hide ? 'password' : 'text'">
-    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    <input
+      matInput
+      placeholder="Please confirm your password"
+      [type]="hide ? 'password' : 'text'"
+      formControlName="confirmPassword"
+      required
+    />
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="hide = !hide"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide"
+    >
+      <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
     </button>
+    <mat-error
+      *ngIf="registerForm.controls['confirmPassword'].errors?.['required']"
+    >
+      Confirm password is required
+    </mat-error>
+    <mat-error
+      *ngIf="registerForm.controls['confirmPassword'].errors?.['passwordMismatch']"
+    >
+      Password doesn't match
+    </mat-error>
   </mat-form-field>
+  <button mat-raised-button color="primary" class="register-submit">
+    Register
+  </button>
+  <p class="register-router">
+    Have already an account? <a [routerLink]="['/login']">Login here</a>
+  </p>
 </form>
