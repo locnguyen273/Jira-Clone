@@ -9,6 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AllValidationErrors } from 'src/app/interfaces/validation';
 import { domainlURL } from 'src/app/utils/config';
 
@@ -18,16 +19,18 @@ import { domainlURL } from 'src/app/utils/config';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  reactiveForm: FormGroup | any;
+  loginForm: FormGroup | any;
+  hide = true;
 
   constructor(
     private http: HttpClient,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toast: ToastrService
   ) {}
 
   ngOnInit(): void {
-    this.reactiveForm = new FormGroup({
+    this.loginForm = this.fb.group({
       userId: new FormControl(0),
       emailId: new FormControl('', [Validators.required, Validators.email]),
       fullName: new FormControl('full name'),
@@ -36,19 +39,22 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-    console.log(this.reactiveForm);
-    console.log(this.reactiveForm.controls['emailId'].errors.required)
-    // console.log(this.errors);
-    // this.http
-    //   .post(domainlURL + 'Login', this.loginObj)
-    //   .subscribe((res: any) => {
-    //     console.log(res);
-    //     if (res.data) {
-    //       localStorage.setItem('JiraLoginDetail', JSON.stringify(res.data));
-    //       this.router.navigateByUrl('/board');
-    //     } else {
-    //       alert(res.message);
-    //     }
-    //   });
+    let loginObj = {
+      userId: 0,
+      emailId: this.loginForm.controls['emailId'].value,
+      fullName: 'string',
+      password: this.loginForm.controls['password'].value,
+    };
+    this.http
+      .post(domainlURL + 'Login', loginObj)
+      .subscribe((res: any) => {
+        if (res.data) {
+          localStorage.setItem('JiraLoginDetail', JSON.stringify(res.data));
+          this.router.navigateByUrl('/board');
+          this.toast.success(res.message, "Success");
+        } else {
+          this.toast.error(res.message, "Oops!")
+        }
+      });
   }
 }

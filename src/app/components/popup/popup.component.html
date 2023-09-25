@@ -1,0 +1,83 @@
+<div class="popup-modal">
+  <h1 mat-dialog-title class="popup-modal-title">{{ inputData.title }}</h1>
+  <div mat-dialog-content class="popup-modal-body">
+    <form [formGroup]="ticketObj" (ngSubmit)="onTicketCreate()">
+      <div class="popup-row">
+        <mat-form-field appearance="outline" class="popup-control">
+          <mat-label>Project</mat-label>
+          <mat-select [(value)]="ticketObj.projectId" formControlName="projectId">
+            <mat-option
+              *ngFor="let project of projectList"
+              value={{project.projectId}}
+              >{{ project.projectName }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="popup-row">
+        <mat-form-field appearance="outline" class="popup-control">
+          <mat-label>
+            Status <span><i class="fa fa-circle-info"></i></span>
+          </mat-label>
+          <mat-select [(value)]="ticketObj.status" formControlName="status">
+            <mat-option *ngFor="let sta of status" value={{sta}}>{{
+              sta
+            }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="popup-control">
+          <mat-label>Summary</mat-label>
+          <input 
+            matInput 
+            placeholder="Please enter summary" 
+            required
+            formControlName="summary" 
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="popup-row">
+        <mat-form-field appearance="outline" class="popup-control">
+          <mat-label>Assignee</mat-label>
+          <mat-select [(value)]="ticketObj.assignedTo" formControlName="assignedTo">
+            <mat-option *ngFor="let user of userList" value={{ user.userId }}>
+              {{ user.fullName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="popup-control">
+          <mat-label>Reporter</mat-label>
+          <mat-select [(value)]="ticketObj.createdBy">
+            <mat-option *ngFor="let user of userList" value="user.userId">
+              {{ user.fullName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="popup-row">
+        <mat-form-field appearance="outline" class="popup-text-area">
+          <mat-label>Description</mat-label>
+          <textarea
+            matInput
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="3"
+            cdkAutosizeMaxRows="10"
+            formControlName="description"
+          ></textarea>
+        </mat-form-field>
+      </div>
+
+      <div mat-dialog-actions class="popup-modal-footer">
+        <button mat-raised-button color="warning" (click)="ClosePopup()">
+          Cancel
+        </button>
+        <button mat-raised-button color="primary">Create</button>
+      </div>
+    </form>
+  </div>
+</div>

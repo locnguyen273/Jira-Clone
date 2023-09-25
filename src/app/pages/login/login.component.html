@@ -1,71 +1,48 @@
-<form class="loginForm" [formGroup]="reactiveForm" (ngSubmit)="onLogin()">
-  <div class="form-group">
+<form class="example-form" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+  <mat-form-field appearance="outline" class="login-input">
+    <mat-label>Email</mat-label>
     <input
-      type="email"
-      formControlName="emailId"
-      class="form-control email mb-3"
-      required
+      matInput
       placeholder="Please input your email"
+      formControlName="emailId"
+      required
     />
-    <!-- Error messages for invalid email -->
-    <div
-      *ngIf="
-        reactiveForm.controls['emailId'].errors.required &&
-        reactiveForm.controls['emailId'].touched
-      "
-      class="text-danger text-align-left"
-    >
-      <p
-        class="text-start"
-        *ngIf="reactiveForm.controls['emailId'].errors.required"
-      >
-        Email is required.
-      </p>
-    </div>
-    <div
-      class="text-danger"
-      *ngIf="reactiveForm.controls['emailId'].errors.email"
-    >
-      <p class="text-start">Invalid email format</p>
-    </div>
-  </div>
-  <div class="form-group">
+    <mat-error *ngIf="loginForm.controls['emailId'].errors?.['required']">
+      Email is required
+    </mat-error>
+    <mat-error *ngIf="loginForm.controls['emailId'].errors?.['email']">
+      Please enter a valid email address
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="login-input">
+    <mat-label>Password</mat-label>
     <input
-      type="password"
-      formControlName="password"
-      class="form-control password mb-3"
+      matInput
       placeholder="Please input your password"
+      [type]="hide ? 'password' : 'text'"
+      formControlName="password"
     />
-    <!-- Error messages for invalid password -->
-    <div
-      *ngIf="
-        reactiveForm.controls['password'].errors.required &&
-        reactiveForm.controls['password'].touched
-      "
-      class="text-danger"
-    >
-      <p
-        class="text-start"
-        *ngIf="reactiveForm.controls['emailId'].errors.required"
-      >
-        Password is required.
-      </p>
-    </div>
-  </div>
-  <div class="form-group">
     <button
-      class="btn btn-lg btn-primary btn-block"
-      (click)="onLogin()"
-      type="button"
-      style="width: 100%"
+      mat-icon-button
+      matSuffix
+      (click)="hide = !hide"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide"
     >
-      Login
+      <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
     </button>
-  </div>
+    <mat-error *ngIf="loginForm.controls['password'].errors?.['required']">
+      Password is required
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" class="login-submit">
+    Login Now
+  </button>
 </form>
-<p class="mt-3">
+
+<p class="login-router">
   Don't have an account ?
-  <a class="lnk-toggler" data-panel=".panel-signup" [routerLink]="['/register']"
-    >Sign up</a
-  >
+  <a [routerLink]="['/login']">Sign up</a>
 </p>

@@ -1,0 +1,28 @@
+.popup-modal {
+  min-height: 550px;
+}
+.popup-modal-title {
+  font-size: 2rem;
+    margin: 20px 0 0;
+    font-weight: 500;
+}
+.popup-modal-body {
+  min-height: 420px;
+}
+.popup-modal-footer {
+  justify-content: flex-end;
+  margin: 20px 0 0;
+  padding: 0;
+}
+.popup-row {
+  display: flex;
+  column-gap: 20px;
+  margin: 10px 0 0;
+}
+.popup-control {
+  width: 100%;
+}
+.popup-text-area {
+  width: 100%;
+  height: 100px;
+}

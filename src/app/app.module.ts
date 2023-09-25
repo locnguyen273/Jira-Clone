@@ -20,6 +20,12 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 import { ToastrModule } from 'ngx-toastr';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatDialogModule} from '@angular/material/dialog';
+import { PopupComponent } from './components/popup/popup.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -30,7 +36,8 @@ import { ToastrModule } from 'ngx-toastr';
     LayoutComponent,
     UsersComponent,
     RegisterComponent,
-    AuthTemplateComponent
+    AuthTemplateComponent,
+    PopupComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +54,11 @@ import { ToastrModule } from 'ngx-toastr';
       positionClass: "toast-bottom-right",
       preventDuplicates: true,
     }),
+    MatToolbarModule,
+    MatMenuModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatGridListModule,
   ],
   providers: [
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}

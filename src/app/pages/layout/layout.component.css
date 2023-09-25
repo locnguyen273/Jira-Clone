@@ -1,10 +1,24 @@
-.mynav  {
-  background-color: #0747a6!important;
-  color: #fff!important;
+.nav {
+  height: 80px;
 }
-.content-hover:hover {
-  background-color: #033681!important;
+
+.menu-container {
+  width: 100%;
+  padding: 0 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.nav-link, .navbar-brand {
-  color: #fff!important;
+.nav-left {
+  display: flex;
+  column-gap: 20px;
+  align-items: center;
+}
+.menu-container h2 {
+  font-size: 28px;
+}
+
+.layout-body {
+  max-width: 1700px;
+  margin: 0 auto;
 }

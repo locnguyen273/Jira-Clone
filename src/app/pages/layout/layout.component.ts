@@ -1,5 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { PopupComponent } from 'src/app/components/popup/popup.component';
+import { UserModel } from 'src/app/models/user';
 import { MasterService } from 'src/app/services/master.service';
 import { domainlURL } from 'src/app/utils/config';
 
@@ -10,35 +13,18 @@ import { domainlURL } from 'src/app/utils/config';
 })
 export class LayoutComponent implements OnInit {
   projectList: any[] = [];
-  userList: any[] = [];
   issueTypes: string[] = ['Ticket', 'Defect', 'RnD Work'];
   status: string[] = ['Todo', 'In Progress', 'Done'];
+  profileUser: UserModel | null = null;
 
-  ticketObj: any = {
-    ticketId: 0,
-    createdDate: '2023-08-18T05:58:41.065Z',
-    summary: '',
-    status: '',
-    description: '',
-    parentId: 0,
-    storyPoint: 0,
-    ticketGuid: '',
-    assignedTo: 0,
-    createdBy: 0,
-    projectId: 0,
-  };
-
-  constructor(private http: HttpClient, private master: MasterService) {
-    const loginData = localStorage.getItem("JiraLoginDetail");
-    if(loginData != null) {
-      const parserData = JSON.parse(loginData);
-      this.ticketObj.createdBy = parserData.userId;
-    }
-  }
+  constructor(
+    private http: HttpClient, 
+    private master: MasterService,
+    private dialog: MatDialog,
+  ) {}
 
   ngOnInit(): void {
     this.getAllProjects();
-    this.getAllUsers();
   }
 
   setProject(obj:any) {
@@ -52,21 +38,17 @@ export class LayoutComponent implements OnInit {
     });
   }
 
-  getAllUsers() {
-    this.http.get(domainlURL + 'GetAllUsers').subscribe((res: any) => {
-      this.userList = res.data;
-    });
-  }
-
-  onTicketCreate() {
-    this.http.post(domainlURL + "CreateTicket", this.ticketObj)
-      .subscribe((res: any) => {
-        if(res.data) {
-          alert(res.message);
-        } else {
-          alert(res.message);
-        }
+  OpenModalPopup() {
+    var _popup = this.dialog.open(PopupComponent, {
+      width: '50%',
+      enterAnimationDuration: '1000ms',
+      exitAnimationDuration: '1000ms',
+      data: {
+        title: 'Create Issue',
       }
-    );
+    });
+    _popup.afterClosed().subscribe(item => {
+      console.log(item);
+    })
   }
 }
